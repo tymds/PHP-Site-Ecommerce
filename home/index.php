@@ -5,10 +5,7 @@ require_once __DIR__ . '/../auth.php';
 
 start_app_session();
 
-if (!is_authenticated()) {
-    header('Location: ../login/');
-    exit;
-}
+$authenticated = is_authenticated();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,17 +23,26 @@ if (!is_authenticated()) {
                     <div class="login__header">
                         <span class="login__badge"><i class="bx bx-store-alt"></i> Shop</span>
                         <h2 class="login__heading">Home</h2>
-                        <p class="login__subtitle">Bienvenue <?= htmlspecialchars((string)$_SESSION['username'], ENT_QUOTES, 'UTF-8') ?>.</p>
+                        <?php if ($authenticated): ?>
+                            <p class="login__subtitle">Bienvenue <?= htmlspecialchars((string)$_SESSION['username'], ENT_QUOTES, 'UTF-8') ?>.</p>
+                        <?php else: ?>
+                            <p class="login__subtitle">Page home temporaire de test.</p>
+                        <?php endif; ?>
                     </div>
 
                     <div class="login__registre">
-                        <p class="form__message form__message--success">Tu es bien connecte.</p>
-                        <p class="login__subtitle">Email: <?= htmlspecialchars((string)$_SESSION['email'], ENT_QUOTES, 'UTF-8') ?></p>
-                        <a class="login__button" href="../logout/">Se deconnecter</a>
+                        <?php if ($authenticated): ?>
+                            <p class="form__message form__message--success">Tu es bien connecte.</p>
+                            <p class="login__subtitle">Email: <?= htmlspecialchars((string)$_SESSION['email'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <a class="login__button" href="../logout/">Se deconnecter</a>
+                        <?php else: ?>
+                            <p class="login__subtitle">Tu n'es pas encore connecte.</p>
+                            <a class="login__button" href="../login/">Se connecter</a>
+                            <a class="login__button" href="../register/">S'inscrire</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
-
