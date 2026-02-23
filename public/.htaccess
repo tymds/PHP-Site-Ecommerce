@@ -1,0 +1,22 @@
+Options -Indexes -MultiViews
+
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(sql|env|ini|log|bak|dist)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Deny access to hidden files/folders.
+    RewriteRule "(^|/)\." - [F,L]
+
+    # Serve static files directly.
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Single entry point for application routes.
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>

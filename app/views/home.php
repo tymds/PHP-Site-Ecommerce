@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="<?= htmlspecialchars(app_url('/assets/styles.css'), ENT_QUOTES, 'UTF-8') ?>">
         <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet">
-        <title>Shop | Home</title>
+        <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
     </head>
     <body>
         <div class="login">
@@ -17,7 +17,7 @@
                         <?php if ($authenticated): ?>
                             <p class="login__subtitle">Bienvenue <?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?>.</p>
                         <?php else: ?>
-                            <p class="login__subtitle">Page home temporaire de test.</p>
+                            <p class="login__subtitle">Tu n'es pas encore connecte.</p>
                         <?php endif; ?>
                     </div>
 
@@ -25,11 +25,14 @@
                         <?php if ($authenticated): ?>
                             <p class="form__message form__message--success">Tu es bien connecte.</p>
                             <p class="login__subtitle">Email: <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?></p>
-                            <a class="login__button" href="../logout/">Se deconnecter</a>
+
+                            <form method="post" action="<?= htmlspecialchars(app_url('/logout'), ENT_QUOTES, 'UTF-8') ?>" class="login__inline-form">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
+                                <button type="submit" class="login__button">Se deconnecter</button>
+                            </form>
                         <?php else: ?>
-                            <p class="login__subtitle">Tu n'es pas encore connecte.</p>
-                            <a class="login__button" href="../login/">Se connecter</a>
-                            <a class="login__button" href="../register/">S'inscrire</a>
+                            <a class="login__button" href="<?= htmlspecialchars(app_url('/login'), ENT_QUOTES, 'UTF-8') ?>">Se connecter</a>
+                            <a class="login__button" href="<?= htmlspecialchars(app_url('/register'), ENT_QUOTES, 'UTF-8') ?>">S'inscrire</a>
                         <?php endif; ?>
                     </div>
                 </div>

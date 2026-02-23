@@ -1,5 +1,4 @@
 <?php
 declare(strict_types=1);
 
-header('Location: home/');
-exit;
+require __DIR__ . '/public/index.php';
