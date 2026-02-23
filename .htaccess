@@ -1,0 +1,28 @@
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+    # Sensitive backend files should never be exposed over HTTP.
+    <FilesMatch "^(auth\.php|db\.php|database\.sql|README\.md)$">
+        Require all denied
+    </FilesMatch>
+
+    # Views are included by controllers and should not be called directly.
+    <FilesMatch "^view\.php$">
+        Require all denied
+    </FilesMatch>
+
+    # Block common sensitive file types.
+    <FilesMatch "\.(sql|env|ini|log|bak|dist)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Never expose the private application folder.
+    RewriteRule ^private(/|$) - [F,L]
+
+    # Deny access to hidden files/folders (e.g. .git, .env).
+    RewriteRule "(^|/)\." - [F,L]
+</IfModule>
