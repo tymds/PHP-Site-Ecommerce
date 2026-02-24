@@ -17,13 +17,13 @@
                         <?php if ($authenticated): ?>
                             <p class="login__subtitle">Bienvenue <?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?>.</p>
                         <?php else: ?>
-                            <p class="login__subtitle">Tu n'es pas encore connecte.</p>
+                            <p class="login__subtitle">Tu n'es pas encore connecté.</p>
                         <?php endif; ?>
                     </div>
 
                     <div class="login__registre">
                         <?php if ($authenticated): ?>
-                            <p class="form__message form__message--success">Tu es bien connecte.</p>
+                            <p class="form__message form__message--success">Tu es bien connecté.</p>
                             <p class="login__subtitle">Email: <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?></p>
 
                             <form method="post" action="<?= htmlspecialchars(app_url('/logout'), ENT_QUOTES, 'UTF-8') ?>" class="login__inline-form">
