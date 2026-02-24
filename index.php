@@ -1,22 +1,17 @@
 <?php
-session_start();
+// index.php
 require_once 'config/database.php';
 
-$homeResult = $oursql->query("SELECT * FROM /*SQL_ARTICLE*/ ORDER BY /*SQL_ID*/ DESC");#ADD proper SQL query here
-if (!$homeResult) {
-    die("Query failed: " . $oursql->error);
+try {
+    // recent as first
+    $query = "SELECT a.*, u.username FROM Article a  JOIN User u ON a.id_auteur = u.id  ORDER BY a.date_publication DESC";
+    
+    $result = $mysqli->query($query);
+    $articles = $result->fetch_all(MYSQLI_ASSOC);
+    include 'views/home_view.php';
+
+} catch (Exception $e) {
+
+    error_log($e->getMessage());
+    die("Une erreur est survenue lors du chargement des articles.");
 }
-?>
-
-<h1>Bienvenue sur projet E-PHP</h1>
-
-
-<?php while($article = $homeResult->fetch_assoc()): ?>
-    if 
-    <article class="article">
-        <h2><?php echo $article['/*SQL_TITLE*/']; ?></h2> <!-- Replace with actual column name -->
-        <p><?php echo $article['/*SQL_CONTENT*/']; ?></p> <!-- Replace with actual column name -->
-    </article>
-<?php endwhile;
-
-
