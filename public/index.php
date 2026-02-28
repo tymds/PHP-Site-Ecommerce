@@ -33,6 +33,7 @@ $route = $route === '' ? '/' : $route;
 $routes = [
     '/' => __DIR__ . '/../app/controllers/home.php',
     '/home' => __DIR__ . '/../app/controllers/home.php',
+    '/account' => __DIR__ . '/../app/controllers/account.php',
     '/login' => __DIR__ . '/../app/controllers/login.php',
     '/register' => __DIR__ . '/../app/controllers/register.php',
     '/logout' => __DIR__ . '/../app/controllers/logout.php',
