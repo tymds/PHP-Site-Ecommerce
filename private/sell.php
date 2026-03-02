@@ -1,11 +1,13 @@
 <?php
 session_start();
-isset($_SESSION['/*SQL_userID*/']) or die("You must be logged in to access this page.");
+
+
+if (!isset($_SESSION['user_id'])) {
 header("Location: login.php");
 exit();
+}
 
 require_once 'config/database.php';
-
 
 include 'public/sell_view.php';
 ?>
