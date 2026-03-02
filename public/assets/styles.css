@@ -427,3 +427,172 @@ button.login__button {
         border-radius: 1.35rem;
     }
 }
+/* Home layout */
+header {
+    max-width: 1200px;
+    margin: 1.2rem auto 0;
+    padding: 0 1rem;
+}
+
+header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+header nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0.55rem 0.95rem;
+    border-radius: 0.7rem;
+    border: 1px solid #ffd2c2;
+    color: var(--brand-dark);
+    background: #fff3ee;
+    font-weight: 700;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+header nav a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(245, 93, 44, 0.18);
+    background: #ffe7de;
+}
+
+header nav .nav-logout-form {
+    margin: 0;
+    display: inline-flex;
+}
+
+header nav .nav-logout-btn {
+    min-height: 42px;
+    padding: 0.55rem 0.95rem;
+    border-radius: 0.7rem;
+    border: 1px solid #ffd6d6;
+    color: #fff;
+    background: linear-gradient(135deg, #d02929 0%, #f15b5b 100%);
+    font-weight: 700;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+header nav .nav-logout-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(208, 41, 41, 0.22);
+}
+
+/* Buttons: inscription, connexion, profil */
+header nav a[href*="register"],
+header nav a[href*="inscri"] {
+    color: #fff;
+    background: linear-gradient(135deg, #f55d2c 0%, #ff8e57 100%);
+    border-color: transparent;
+}
+
+header nav a[href*="login"],
+header nav a[href*="connex"] {
+    color: #17335f;
+    background: #e7f0ff;
+    border-color: #c5dbff;
+}
+
+header nav a[href*="account"],
+header nav a[href*="profil"] {
+    color: #1b4f36;
+    background: #e7f9ee;
+    border-color: #b8ebca;
+}
+
+main {
+    max-width: 1200px;
+    margin: 1rem auto 2rem;
+    padding: 0 1rem 1rem;
+}
+
+main h1 {
+    margin: 0 0 1rem;
+    font-family: var(--title-font);
+    font-size: 1.7rem;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.95rem;
+}
+
+.product-card {
+    padding: 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(17, 24, 39, 0.06);
+}
+
+.product-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 0.6rem;
+    background: #f3f6fb;
+    margin-bottom: 0.7rem;
+}
+
+.product-card img[src=""] {
+    display: none;
+}
+
+.product-card h3 {
+    margin: 0 0 0.45rem;
+    font-family: var(--title-font);
+    font-size: 1.05rem;
+}
+
+.product-card p {
+    margin: 0 0 0.42rem;
+    color: #4f5a79;
+    line-height: 1.4;
+}
+
+.product-card .price {
+    color: var(--brand-dark);
+    font-weight: 800;
+}
+
+.product-card .author {
+    font-size: 0.85rem;
+    color: #6b7592;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.45rem;
+    min-height: 40px;
+    padding: 0.5rem 0.85rem;
+    border-radius: 0.62rem;
+    color: #fff;
+    background: linear-gradient(135deg, #f55d2c 0%, #ff8e57 100%);
+    font-weight: 700;
+    box-shadow: 0 8px 16px rgba(245, 93, 44, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(245, 93, 44, 0.28);
+}
+
+@media (max-width: 640px) {
+    header {
+        margin-top: 0.8rem;
+    }
+
+    main h1 {
+        font-size: 1.4rem;
+    }
+}

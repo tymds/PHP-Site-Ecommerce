@@ -30,9 +30,23 @@ $requestPath = '/' . ltrim($requestPath, '/');
 $route = rtrim($requestPath, '/');
 $route = $route === '' ? '/' : $route;
 
+if ($route === '/public') {
+    $route = '/';
+} elseif (str_starts_with($route, '/public/')) {
+    $route = substr($route, strlen('/public'));
+    $route = $route === '' ? '/' : $route;
+}
+
+if ($route === '/home.php') {
+    $route = '/home';
+} elseif ($route === '/index.php') {
+    $route = '/';
+}
+
 $routes = [
     '/' => __DIR__ . '/../app/controllers/home.php',
     '/home' => __DIR__ . '/../app/controllers/home.php',
+    '/home.php' => __DIR__ . '/../app/controllers/home.php',
     '/account' => __DIR__ . '/../app/controllers/account.php',
     '/login' => __DIR__ . '/../app/controllers/login.php',
     '/register' => __DIR__ . '/../app/controllers/register.php',

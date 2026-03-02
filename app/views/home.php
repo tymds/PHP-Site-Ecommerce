@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Accueil - E-Commerce</title>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="<?= htmlspecialchars(app_url('/assets/styles.css'), ENT_QUOTES, 'UTF-8') ?>">
 </head>
 <body>
     <header>
