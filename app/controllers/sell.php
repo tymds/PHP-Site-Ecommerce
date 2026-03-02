@@ -1,13 +1,11 @@
 <?php
-session_start();
+declare(strict_types=1);
 
-
-if (!isset($_SESSION['user_id'])) {
-header("Location: login.php");
-exit();
+if (!is_authenticated()) {
+    redirect_to('/login');
 }
 
-require_once 'config/database.php';
+$errors = [];
+$pageTitle = 'Vendre un article - E-Commerce';
 
-include 'public/sell_view.php';
-?>
+require __DIR__ . '/../views/sell_view.php';

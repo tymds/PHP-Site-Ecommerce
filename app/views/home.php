@@ -8,8 +8,8 @@
 <body>
     <header>
         <nav>
-            <a href="index.php">Accueil</a>
-            <a href="sell.php">Vendre un article</a>
+            <a href="<?= htmlspecialchars(app_url('/home'), ENT_QUOTES, 'UTF-8') ?>">Accueil</a>
+            <a href="<?= htmlspecialchars(app_url('/sell'), ENT_QUOTES, 'UTF-8') ?>">Vendre un article</a>
             <?php if ($authenticated): ?>
                 <a href="<?= htmlspecialchars(app_url('/account'), ENT_QUOTES, 'UTF-8') ?>">Profil</a>
                 <form method="post" action="<?= htmlspecialchars(app_url('/logout'), ENT_QUOTES, 'UTF-8') ?>" class="nav-logout-form">
