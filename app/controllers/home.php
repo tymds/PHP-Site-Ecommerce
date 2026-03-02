@@ -1,24 +1,20 @@
 <?php
 declare(strict_types=1);
 
-$articles = [];
-$pageTitle = 'Accueil - E-Commerce';
+require_once 'config/db.php';
 
 try {
-    /** @var PDO $pdo */
-    $pdo = require __DIR__ . '/../../private/db.php';
+    // recent as first
+    $query = "SELECT a.*, u.username FROM Article a  JOIN User u ON a.id_auteur = u.id  ORDER BY a.date_publication DESC";
+    
+    $result = $mysqli->query($query);
+    $articles = $result->fetch_all(MYSQLI_ASSOC);
+    include '/app/views/home.php';
 
-    $query = 'SELECT a.*, u.username
-              FROM `Article` a
-              JOIN `User` u ON a.id_auteur = u.id
-              ORDER BY a.date_publication DESC';
+} catch (Exception $e) {
 
-    $stmt = $pdo->query($query);
-    if ($stmt !== false) {
-        $articles = $stmt->fetchAll();
-    }
-} catch (Throwable $exception) {
-    error_log($exception->getMessage());
+    error_log($e->getMessage());
+    die("Une erreur est survenue lors du chargement des articles.");
 }
 
 require __DIR__ . '/../views/home.php';
