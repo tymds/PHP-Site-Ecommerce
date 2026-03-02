@@ -52,8 +52,7 @@ $routes = [
     '/register' => __DIR__ . '/../app/controllers/register.php',
     '/logout' => __DIR__ . '/../app/controllers/logout.php',
     '/index.php' => __DIR__ . '/../app/controllers/home.php',
-    '/sell' => __DIR__ . '/../app/controllers/sell.php'
-    '/sell_action' => __DIR__ . '/../app/controllers/sell_action.php',
+    '/sell' => __DIR__ . '/../app/controllers/sell_action.php',
 ];
 
 if (isset($routes[$route])) {
