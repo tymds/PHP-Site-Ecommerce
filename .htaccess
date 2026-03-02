@@ -1,0 +1,34 @@
+Options -Indexes -MultiViews
+
+<IfModule mod_authz_core.c>
+    # Block obvious sensitive files at web root.
+    <FilesMatch "^(database\.sql|README\.md)$">
+        Require all denied
+    </FilesMatch>
+
+    # Block common sensitive file types from direct download.
+    <FilesMatch "\.(sql|env|ini|log|bak|dist)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Deny access to hidden files/folders (e.g. .git, .env).
+    RewriteRule "(^|/)\." - [F,L]
+
+    # Never expose internal application folders.
+    RewriteRule ^(app|private)(/|$) - [F,L]
+
+    # Keep direct requests already scoped to /public untouched.
+    RewriteRule ^public/ - [L]
+
+    # Serve existing files/directories when they exist at project root.
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Internal rewrite to /public to avoid external redirect chains.
+    RewriteRule ^(.*)$ public/$1 [QSA,L]
+</IfModule>
